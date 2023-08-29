@@ -65,7 +65,7 @@ body {
 .shopping-cart-container {
 	display: flex;
 	flex-direction: column;
-	flex: 94%;
+	flex: 93%;
 	gap: 20px;
 
 	padding: 10px;
