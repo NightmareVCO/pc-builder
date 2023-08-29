@@ -1,3 +1,11 @@
+/*
+* This is the database file of the application.
+* JS to manage the form
+*
+* @author Vladimir Curiel <vladimircuriel@outllook.com>
+* @link https://github.com/NightmareVCO/pc-builder
+*/
+
 const components = [
    {
       id: "1",
@@ -155,6 +163,11 @@ const components = [
    }
 ];
 
+/**
+ * Retrieves the components.
+ *
+ * @return {Array} The array of components.
+ */
 function getComponents() {
    return components;
 }
