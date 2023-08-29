@@ -101,6 +101,29 @@ function getMouseLocation() {
 }
 
 /**
+ * Refreshes the shopping cart by selecting all the items in the shopping cart container.
+ *
+ * @param {None} None - This function does not accept any parameters.
+ * @return {None} None - This function does not return any value.
+ */
+function refreshShoppingCart() {
+   shoppingCartItems = document.querySelectorAll(".shopping-cart-container .component");
+}
+
+/**
+ * Adds an item to the shopping cart.
+ *
+ * @param {type} paramName - description of the parameter
+ * @return {type} description of the return value
+ */
+function addToShoppingCart() {
+   if (mouseLocation === "shopping-cart-container")
+      element.remove();
+   else
+      addElement(copyElement(element),shoppingCartContainer);
+}
+
+/**
  * Updates the shopping cart based on the mouse location.
  *
  * @param {string} mouseLocation - The location of the mouse.
@@ -108,11 +131,8 @@ function getMouseLocation() {
  * @param {HTMLElement} shoppingCartContainer - The container for the shopping cart.
  */
 function shoppingCart() {
-   if (mouseLocation === "shopping-cart-container")
-      element.remove();
-   else
-      addElement(copyElement(element),shoppingCartContainer);
-
+   addToShoppingCart();
+   refreshShoppingCart();
    calculateTotal();
 }
 
@@ -134,7 +154,6 @@ function calculateTotal() {
    totalPrice.innerHTML = total > 0 ? `$${total}` : "$0";
 }
 
-
 /**
  * Returns the component ID from a given component full name.
  *
@@ -155,10 +174,11 @@ function getComponentID(componentFullName) {
  */
 function DOMInit() {
    shoppingCartContainer = document.querySelector(".shopping-cart-container");
-   shoppingCartItems = document.querySelectorAll(".shopping-cart-container");
    container = document.querySelector(".components-container");
    totalPrice = document.getElementById("total-price");
+
    componentContainer = document.getElementsByClassName("component");
+   shoppingCartItems = document.querySelectorAll(".shopping-cart-container .component");
 }
 /**
  * Executes the main functionality of the program.
