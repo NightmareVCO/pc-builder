@@ -1,12 +1,16 @@
-/**
- * Returns the element with the specified ID.
- *
- * @param {string} key - The ID of the element to retrieve.
- * @return {HTMLElement} The element with the specified ID.
- */
-function getElement(key) {
-   return document.querySelector(key);
-}
+/*
+* This is the main file of the application.
+* JS to manage the form
+*
+* @author Vladimir Curiel <vladimircuriel@outllook.com>
+* @link https://github.com/NightmareVCO/pc-builder
+*/
+
+let html;
+let componentContainer;
+let shoppingCartContainer;
+let element;
+let mouseLocation;
 
 /**
  * Creates a new component element based on the given component object.
@@ -58,12 +62,68 @@ function addElement(newElement,parent) {
    parent.appendChild(newElement);
 }
 
+function copyElement(element) {
+   return element.cloneNode(true);
+}
+
+/**
+ * A function that handles the event when an element is dragged.
+ *
+ * @param {Event} event - The event object representing the drag event.
+ */
+function draggedElement(event) {
+   element = event.target;
+}
+
+function getMouseLocation(event) {
+   mouseLocation = this.className;
+   console.log(mouseLocation);
+}
+
+/**
+ * Updates the shopping cart based on the mouse location.
+ *
+ * @param {string} mouseLocation - The location of the mouse.
+ * @param {HTMLElement} element - The element to be manipulated.
+ * @param {HTMLElement} shoppingCartContainer - The container for the shopping cart.
+ */
+function shoppingCart() {
+   if (mouseLocation === "shopping-cart-container")
+      element.remove();
+   else
+      addElement(copyElement(element),shoppingCartContainer);
+}
+
+/**
+ * Initializes the DOM.
+ *
+ * @return {undefined} No return value.
+ */
+function DOMInit() {
+   shoppingCartContainer = document.querySelector(".shopping-cart-container");
+}
+
 //Event Initialization
 function main() {
    const database = getComponents();
+   DOMInit();
+   componentContainer = document.getElementsByClassName("component");
 
    for (const component of database)
-      addElement(createComponent(component),getElement(".components-container"));
+      addElement(createComponent(component),document.querySelector(".components-container"));
+
+   //drag and drop
+   for (let component of componentContainer)
+      component.addEventListener("dragstart",draggedElement);
+   //to do the drop
+   container.addEventListener("mouseover",getMouseLocation);
+
+   shoppingCartContainer.addEventListener("mouseover",getMouseLocation);
+   shoppingCartContainer.addEventListener("dragstart",draggedElement);
+   shoppingCartContainer.addEventListener("dragover",event => event.preventDefault());
+   shoppingCartContainer.addEventListener("drop",shoppingCart);
+
+
 }
 
 document.addEventListener('DOMContentLoaded',main);
