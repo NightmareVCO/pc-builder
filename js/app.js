@@ -200,6 +200,13 @@ function DOMInit() {
    componentContainer = document.getElementsByClassName("component");
    shoppingCartItems = document.querySelectorAll(".shopping-cart-container .component");
 }
+
+function loadShoppingCart() {
+   let shoppingCartItems = JSON.parse(localStorage.getItem("components"));
+   for (const component of shoppingCartItems)
+      addElement(createComponent(component),shoppingCartContainer);
+}
+
 /**
  * Executes the main functionality of the program.
  *
@@ -207,6 +214,7 @@ function DOMInit() {
  */
 function main() {
    DOMInit();
+   loadShoppingCart();
 
    for (const component of database)
       addElement(createComponent(component),container);
