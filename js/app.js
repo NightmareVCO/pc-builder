@@ -9,8 +9,11 @@
 let html;
 let componentContainer;
 let shoppingCartContainer;
+let shoppingCartItems;
 let element;
 let mouseLocation;
+let totalPrice;
+const database = getComponents();
 
 /**
  * Creates a new component element based on the given component object.
@@ -20,33 +23,39 @@ let mouseLocation;
  */
 function createComponent(component) {
    // Create the new element div and set its properties
-   let div = document.createElement("div");
+   const div = document.createElement("div");
    div.className = "component";
    div.draggable = true;
 
    // Create the new element div and set its properties
-   let info = document.createElement("div");
+   const info = document.createElement("div");
    info.className = "component-info";
 
    // Create the new element img and set its properties
-   let img = document.createElement("img");
+   const img = document.createElement("img");
    img.src = `./images/${component.category}_${component.id}.png`;
    img.alt = `${component.category}`;
    img.draggable = false;
 
    // Create the new element h3 and set its properties
-   let h3 = document.createElement("h3");
+   const h3 = document.createElement("h3");
    h3.textContent = `${component.brand} ${component.name}`;
 
    // Create the new element p and set its properties
-   let p = document.createElement("p");
-   p.textContent = `$${component.price}`;
+   const p = document.createElement("p");
+   p.textContent = ` $${component.price} `;
+
+   // Create the new element id and set its properties
+   const id = document.createElement("id");
+   id.textContent = component.id;
+   id.style.display = "none";
 
 
    // Add the elements to the div
    info.appendChild(img);
    info.appendChild(h3);
    info.appendChild(p);
+   info.appendChild(id);
 
    div.appendChild(info);
    return div;
@@ -63,6 +72,12 @@ function addElement(newElement,parent) {
    parent.appendChild(newElement);
 }
 
+/**
+ * Clones the given element.
+ *
+ * @param {Element} element - The element to be cloned.
+ * @return {Element} A deep copy of the given element.
+ */
 function copyElement(element) {
    return element.cloneNode(true);
 }
@@ -76,7 +91,12 @@ function draggedElement(event) {
    element = event.target;
 }
 
-function getMouseLocation(event) {
+/**
+ * Retrieves the current mouse location.
+ *
+ * @return {string} The className of the element the mouse is currently over.
+ */
+function getMouseLocation() {
    mouseLocation = this.className;
 }
 
@@ -92,6 +112,40 @@ function shoppingCart() {
       element.remove();
    else
       addElement(copyElement(element),shoppingCartContainer);
+
+   calculateTotal();
+}
+
+/**
+ * Calculates the total price of the shopping cart items.
+ *
+ * @return {number} The total price of the shopping cart items.
+ */
+function calculateTotal() {
+   let total = 0;
+
+   // Calculate the total price using html (not recommended)
+   // for (const component of shoppingCartItems)
+   //    total += parseInt(component.lastElementChild.textContent.split("$")[1]);
+
+   for (const component of shoppingCartItems)
+      total += getComponentByID(getComponentID(component.lastElementChild.textContent)).price;
+
+   totalPrice.innerHTML = total > 0 ? `$${total}` : "$0";
+}
+
+
+/**
+ * Returns the component ID from a given component full name.
+ *
+ * @param {string} componentFullName - The full name of the component.
+ * @return {string} The ID of the component.
+ */
+function getComponentID(componentFullName) {
+   let id = "";
+   const fullName = componentFullName.split(" ");
+   id = fullName[fullName.length - 1];
+   return id;
 }
 
 /**
@@ -101,24 +155,27 @@ function shoppingCart() {
  */
 function DOMInit() {
    shoppingCartContainer = document.querySelector(".shopping-cart-container");
+   shoppingCartItems = document.querySelectorAll(".shopping-cart-container");
    container = document.querySelector(".components-container");
-}
-
-//Event Initialization
-function main() {
-   const database = getComponents();
-   DOMInit();
+   totalPrice = document.getElementById("total-price");
    componentContainer = document.getElementsByClassName("component");
+}
+/**
+ * Executes the main functionality of the program.
+ *
+ * @return {undefined} This function does not return a value.
+ */
+function main() {
+   DOMInit();
 
    for (const component of database)
-      addElement(createComponent(component),document.querySelector(".components-container"));
+      addElement(createComponent(component),container);
 
    //drag and drop
-   for (let component of componentContainer)
+   for (const component of componentContainer)
       component.addEventListener("dragstart",draggedElement);
    //to do the drop
    container.addEventListener("mouseover",getMouseLocation);
-
    shoppingCartContainer.addEventListener("mouseover",getMouseLocation);
    shoppingCartContainer.addEventListener("dragstart",draggedElement);
    shoppingCartContainer.addEventListener("dragover",event => event.preventDefault());
