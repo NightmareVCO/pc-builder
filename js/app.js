@@ -118,7 +118,11 @@ function refreshShoppingCart() {
  */
 function addToShoppingCart() {
    if (mouseLocation === "shopping-cart-container")
+   {
+      deleteComponentLocal(getComponentByID(getComponentID(element.textContent)));
       element.remove();
+   }
+
    else
       addElement(copyElement(element),shoppingCartContainer);
 }
@@ -134,6 +138,16 @@ function shoppingCart() {
    addToShoppingCart();
    refreshShoppingCart();
    calculateTotal();
+   setData();
+}
+
+function setData() {
+   for (const component of shoppingCartItems)
+   {
+      setComponent(getComponentByID(getComponentID(component.lastElementChild.textContent)));
+      getComponent();
+      componentsList();
+   }
 }
 
 /**
