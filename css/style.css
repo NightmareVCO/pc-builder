@@ -68,8 +68,8 @@ body {
 }
 
 .shopping-cart-container .component {
-	max-height: 202px;
-	max-width: 242px;
+	max-height: 300px;
+	max-width: 500px;
 }
 
 footer {
