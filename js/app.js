@@ -32,6 +32,7 @@ function createComponent(component) {
    let img = document.createElement("img");
    img.src = `./images/${component.category}_${component.id}.png`;
    img.alt = `${component.category}`;
+   img.draggable = false;
 
    // Create the new element h3 and set its properties
    let h3 = document.createElement("h3");
@@ -77,7 +78,6 @@ function draggedElement(event) {
 
 function getMouseLocation(event) {
    mouseLocation = this.className;
-   console.log(mouseLocation);
 }
 
 /**
@@ -123,8 +123,6 @@ function main() {
    shoppingCartContainer.addEventListener("dragstart",draggedElement);
    shoppingCartContainer.addEventListener("dragover",event => event.preventDefault());
    shoppingCartContainer.addEventListener("drop",shoppingCart);
-
-
 }
 
 document.addEventListener('DOMContentLoaded',main);
