@@ -141,6 +141,12 @@ function shoppingCart() {
    setData();
 }
 
+/**
+ * Sets the data for the shopping cart items.
+ *
+ * @param {type} shoppingCartItems - the array of shopping cart items
+ * @return {undefined} This function does not return anything
+ */
 function setData() {
    for (const component of shoppingCartItems)
    {
