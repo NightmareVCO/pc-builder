@@ -202,7 +202,7 @@ function DOMInit() {
 }
 
 function loadShoppingCart() {
-   let shoppingCartItems = JSON.parse(localStorage.getItem("components"));
+   let shoppingCartItems = JSON.parse(localStorage.getItem("components")) || [];
    for (const component of shoppingCartItems)
       addElement(createComponent(component),shoppingCartContainer);
 }
