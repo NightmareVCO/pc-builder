@@ -39,7 +39,7 @@ function createComponent(component) {
 
    // Create the new element p and set its properties
    let p = document.createElement("p");
-   p.textContent = `${component.price}`;
+   p.textContent = `$${component.price}`;
 
 
    // Add the elements to the div
@@ -101,6 +101,7 @@ function shoppingCart() {
  */
 function DOMInit() {
    shoppingCartContainer = document.querySelector(".shopping-cart-container");
+   container = document.querySelector(".components-container");
 }
 
 //Event Initialization
