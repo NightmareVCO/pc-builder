@@ -164,3 +164,13 @@ const components = [
 function getComponents() {
    return components;
 }
+
+/**
+ * Finds and returns a component object by its name.
+ *
+ * @param {string} name - The name of the component to search for.
+ * @return {object} The component object with the specified name, or undefined if not found.
+ */
+function getComponentByID(name) {
+   return components.find(component => component.id === name);
+}
