@@ -71,13 +71,6 @@ const components = [
       price: 300
    },
    {
-      id: "10",
-      category: "SSD",
-      brand: "SAMSUNG",
-      name: "980 EVO",
-      price: 400
-   },
-   {
       id: "11",
       category: "HDD",
       brand: "SEAGATE",
