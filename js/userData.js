@@ -51,7 +51,7 @@ function createComponentLocal() {
       category: componentCategory,
       brand: componentBrand,
       name: componentName,
-      price: componentPrice
+      price: parseInt(componentPrice)
    };
    return componentToList;
 }
@@ -89,7 +89,7 @@ function checkLocalStorageComponent(component,componentsList) {
  */
 function deleteComponentLocal(component) {
    let componentsList = getComponentsLocal();
-   if (checkLocalStorageComponent(component,componentsList))
+   if (!checkLocalStorageComponent(component,componentsList))
       componentsList.splice(componentsList.indexOf(component),1);
 
    localStorage.setItem("components",JSON.stringify(componentsList));
