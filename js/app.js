@@ -117,14 +117,19 @@ function refreshShoppingCart() {
  * @return {type} description of the return value
  */
 function addToShoppingCart() {
+   const component = getComponentByID(getComponentID(element.textContent));
+   const shoppingCartItemsInner = JSON.parse(localStorage.getItem("components")) || [];
+
    if (mouseLocation === "shopping-cart-container")
    {
-      deleteComponentLocal(getComponentByID(getComponentID(element.textContent)));
+      deleteComponentLocal(component);
       element.remove();
    }
-
-   else
+   else if (checkLocalStorageComponent(component,shoppingCartItemsInner))
+   {
       addElement(copyElement(element),shoppingCartContainer);
+   }
+
 }
 
 /**
