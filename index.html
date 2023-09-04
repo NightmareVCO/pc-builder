@@ -1,51 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>PC Builder</title>
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link
-			href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300&display=swap"
-			rel="stylesheet" />
-		<link rel="stylesheet" href="./css/reset.css" />
-		<link rel="stylesheet" href="./css/style.css" />
-		<link rel="icon" type="image/x-icon" href="./images/favicon.ico.png" />
-		<script src="./js/database.js" defer></script>
-		<script src="./js/app.js" defer></script>
-		<script src="./js/userData.js"></script>
-	</head>
-	<body>
-		<!-- header -->
-		<header>
-			<img src="./images/logo.png" alt="Logo de PC Builder" />
-			<h1>Components Store</h1>
-		</header>
 
-		<!-- main -->
-		<main>
-			<div class="container">
-				<div class="components-container"></div>
+<head>
+   <meta charset="UTF-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   <title>PC Builder</title>
+   <link rel="preconnect" href="https://fonts.googleapis.com" />
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300&display=swap" rel="stylesheet" />
+   <link rel="stylesheet" href="./css/reset.css" />
+   <link rel="stylesheet" href="./css/style.css" />
+   <link rel="icon" type="image/x-icon" href="./images/favicon.ico.png" />
+   <script src="./js/database.js" defer></script>
+   <script src="./js/app.js" defer></script>
+   <script src="./js/userData.js"></script>
+</head>
 
-				<div class="shopping-cart">
-					<div class="shopping-cart-total">
-						<div id="total-price-container"></div>
-						<h3 draggable="false">Total Price:</h3>
-						<p id="total-price" draggable="false">$0</p>
-					</div>
+<body>
+   <!-- header -->
+   <header>
+      <img src="./images/logo.png" alt="Logo de PC Builder" />
+      <h1>Components Store</h1>
+   </header>
 
-					<div class="shopping-cart-container"></div>
+   <!-- main -->
+   <main>
+      <div class="container">
+         <div class="components-container"></div>
 
-					<div id="shopping-cart-pay">
-						<button class="btn btn-primary">Pay</button>
-					</div>
-				</div>
-			</div>
-		</main>
-		<!-- footer -->
-		<footer>
-			<p>Practica de Drag and Drop</p>
-		</footer>
-	</body>
+         <div class="shopping-cart">
+            <div class="shopping-cart-total">
+               <div id="total-price-container"></div>
+               <h3 draggable="false">Total Price:</h3>
+               <p id="total-price" draggable="false">$0</p>
+            </div>
+
+            <div class="shopping-cart-container"></div>
+
+            <div id="shopping-cart-pay">
+               <button class="btn btn-primary">Pay</button>
+            </div>
+         </div>
+      </div>
+   </main>
+   <!-- footer -->
+   <footer>
+      <p>Practica de Drag and Drop</p>
+   </footer>
+</body>
+
 </html>

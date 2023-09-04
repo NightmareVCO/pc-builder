@@ -24,11 +24,11 @@ let componentPrice;
  * @param {number} component.price - The price of the component.
  */
 function setComponent(component) {
-   sessionStorage.setItem("id",component.id);
-   sessionStorage.setItem("category",component.category);
-   sessionStorage.setItem("brand",component.brand);
-   sessionStorage.setItem("name",component.name);
-   sessionStorage.setItem("price",component.price);
+   sessionStorage.setItem("id", component.id);
+   sessionStorage.setItem("category", component.category);
+   sessionStorage.setItem("brand", component.brand);
+   sessionStorage.setItem("name", component.name);
+   sessionStorage.setItem("price", component.price);
 }
 
 /**
@@ -73,7 +73,7 @@ function getComponentsLocal() {
  * @param {Array} componentsList - The list of existing components.
  * @return {boolean} Returns true if the component does not exist in the list, otherwise false.
  */
-function checkLocalStorageComponent(component,componentsList) {
+function checkLocalStorageComponent(component, componentsList) {
    for (const existingComponent of componentsList)
       if (JSON.stringify(existingComponent) === JSON.stringify(component))
          return false;
@@ -89,10 +89,10 @@ function checkLocalStorageComponent(component,componentsList) {
  */
 function deleteComponentLocal(component) {
    let componentsList = getComponentsLocal();
-   if (!checkLocalStorageComponent(component,componentsList))
-      componentsList.splice(componentsList.indexOf(component),1);
+   if (!checkLocalStorageComponent(component, componentsList))
+      componentsList.splice(componentsList.indexOf(component), 1);
 
-   localStorage.setItem("components",JSON.stringify(componentsList));
+   localStorage.setItem("components", JSON.stringify(componentsList));
 }
 
 /**
@@ -104,8 +104,8 @@ function componentsList() {
    const component = createComponentLocal();
    let componentsList = getComponentsLocal();
 
-   if (checkLocalStorageComponent(component,componentsList))
+   if (checkLocalStorageComponent(component, componentsList))
       componentsList.push(component);
 
-   localStorage.setItem("components",JSON.stringify(componentsList));
+   localStorage.setItem("components", JSON.stringify(componentsList));
 }

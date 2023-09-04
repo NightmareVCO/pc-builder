@@ -68,7 +68,7 @@ function createComponent(component) {
  * @param {Element} parent - The element of the parent.
  * @return {void}
  */
-function addElement(newElement,parent) {
+function addElement(newElement, parent) {
    parent.appendChild(newElement);
 }
 
@@ -120,14 +120,12 @@ function addToShoppingCart() {
    const component = getComponentByID(getComponentID(element.textContent));
    const shoppingCartItemsInner = JSON.parse(localStorage.getItem("components")) || [];
 
-   if (mouseLocation === "shopping-cart-container")
-   {
+   if (mouseLocation === "shopping-cart-container") {
       deleteComponentLocal(component);
       element.remove();
    }
-   else if (checkLocalStorageComponent(component,shoppingCartItemsInner))
-   {
-      addElement(copyElement(element),shoppingCartContainer);
+   else if (checkLocalStorageComponent(component, shoppingCartItemsInner)) {
+      addElement(copyElement(element), shoppingCartContainer);
    }
 
 }
@@ -153,8 +151,7 @@ function shoppingCart() {
  * @return {undefined} This function does not return anything
  */
 function setData() {
-   for (const component of shoppingCartItems)
-   {
+   for (const component of shoppingCartItems) {
       setComponent(getComponentByID(getComponentID(component.lastElementChild.textContent)));
       getComponent();
       componentsList();
@@ -209,7 +206,7 @@ function DOMInit() {
 function loadShoppingCart() {
    let shoppingCartItems = JSON.parse(localStorage.getItem("components")) || [];
    for (const component of shoppingCartItems)
-      addElement(createComponent(component),shoppingCartContainer);
+      addElement(createComponent(component), shoppingCartContainer);
    refreshShoppingCart();
    calculateTotal();
 }
@@ -224,17 +221,17 @@ function main() {
    loadShoppingCart();
 
    for (const component of database)
-      addElement(createComponent(component),container);
+      addElement(createComponent(component), container);
 
    //drag and drop
    for (const component of componentContainer)
-      component.addEventListener("dragstart",draggedElement);
+      component.addEventListener("dragstart", draggedElement);
    //to do the drop
-   container.addEventListener("mouseover",getMouseLocation);
-   shoppingCartContainer.addEventListener("mouseover",getMouseLocation);
-   shoppingCartContainer.addEventListener("dragstart",draggedElement);
-   shoppingCartContainer.addEventListener("dragover",event => event.preventDefault());
-   shoppingCartContainer.addEventListener("drop",shoppingCart);
+   container.addEventListener("mouseover", getMouseLocation);
+   shoppingCartContainer.addEventListener("mouseover", getMouseLocation);
+   shoppingCartContainer.addEventListener("dragstart", draggedElement);
+   shoppingCartContainer.addEventListener("dragover", event => event.preventDefault());
+   shoppingCartContainer.addEventListener("drop", shoppingCart);
 }
 
-document.addEventListener('DOMContentLoaded',main);
+document.addEventListener('DOMContentLoaded', main);
